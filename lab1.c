@@ -20,11 +20,18 @@ Day* create(int size) {
 }
 
 // Function to read data into the calendar
-void read(Day *calendar, int size) {
-    for (int i = 0; i < size; i++) {
-        char tempDay[50], tempActivity[100];
-        printf("Enter details for Day %d:\n", i + 1);
 
+void read(Day *calendar, int size) {
+    char choice;
+    int validentry=0;
+    for (int i = 0; i < size; i++) {
+        printf("Enter details for Day %d [y/n]", i + 1);
+        scanf("%c",&choice);
+        
+        if(choice=='y'|| choice=='Y'){
+        validentry=1;
+        char tempDay[50], tempActivity[100];
+        
         // Read day name
         printf("  Enter day name: ");
         scanf(" %49s", tempDay);
@@ -50,6 +57,11 @@ void read(Day *calendar, int size) {
             exit(1);
         }
         strcpy(calendar[i].activity, tempActivity);
+        }
+        else{
+            printf("Invalid: please enter valid input\n");
+            exit(0);
+        }
     }
 }
 
